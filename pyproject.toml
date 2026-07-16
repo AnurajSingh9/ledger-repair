@@ -1,0 +1,27 @@
+[project]
+name = "ledger-repair"
+version = "0.1.0"
+description = "Long-horizon stateful debugging RL environment: repair a double-entry ledger engine with interacting, state-dependent bugs."
+requires-python = ">=3.11"
+dependencies = [
+    "verifiers>=0.2.0",
+    "datasets>=2.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ledger_repair.py"]
+include = ["assets/**"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"assets" = "assets"
+
+[tool.verifiers]
+# default eval parameters used by `prime eval run` when flags are not provided
+[tool.verifiers.eval]
+num_examples = 8
+rollouts_per_example = 3
+max_concurrent = 4
