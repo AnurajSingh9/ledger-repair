@@ -7,7 +7,6 @@ accounting-period boundaries. Grading uses a held-out oracle — not LLM-as-judg
 so scores are deterministic and auditable.
 
 [![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## Why this exists
 
