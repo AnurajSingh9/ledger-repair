@@ -38,6 +38,11 @@ cd assets
 python soundness_receipt.py
 python capability_ladder.py
 python test_isolation.py
+```
+
+Receipts: `assets/RECEIPTS.md`
+
+---
 
 # ledger_repair — a long-horizon stateful debugging RL environment
 
