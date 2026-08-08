@@ -1,3 +1,45 @@
+# ledger-repair
+
+**RL evaluation environment for frontier coding agents.**
+
+Agents must debug a buggy double-entry ledger where failures only appear across
+accounting-period boundaries. Grading uses a held-out oracle — not LLM-as-judge —
+so scores are deterministic and auditable.
+
+[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+## Why this exists
+
+Most agent demos grade with an LLM judge. That drifts.
+
+`ledger-repair` grades with:
+- 40 held-out scenarios the agent never sees
+- An independent oracle for ground-truth balances
+- Soundness checks against common cheat classes
+
+Built for evaluating **long-horizon stateful debugging** — where the symptom is
+far from the cause.
+
+## Quick facts
+
+| Piece | Detail |
+|------|--------|
+| Agent tools | `read_file`, `write_file`, `run_ledger`, `submit` |
+| Bugs | Rollover off-by-one, post-rollover sign flip, masked rounding |
+| Grading | Oracle + 40 held-out scenarios |
+| Soundness | False-accept / false-reject receipts with Wilson CIs |
+| Format | `verifiers` (`load_environment` + wheel) |
+
+## Quick start
+
+```bash
+pip install -e .
+cd assets
+python soundness_receipt.py
+python capability_ladder.py
+python test_isolation.py
+
 # ledger_repair — a long-horizon stateful debugging RL environment
 
 Repair a double-entry ledger engine whose bugs only surface once transactions
